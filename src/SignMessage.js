@@ -15,11 +15,7 @@ const signMessage = async ({ setError, message }) => {
     const signer = provider.getSigner();
     var hash = Web3.utils.sha3(message);
     const address = await signer.getAddress();
-    Personal.sign();
-    var signature = await Personal.sig(hash, address);
-    // var hash = Web3.utils.sha3(message);
-    console.log(signature);
-    // const signature = await Web3.eth.personal.sign(hash, address, "Harsh@1997");
+    const signature = await Web3.eth.personal.sign(hash, address, "Harsh@1997");
     return {
       message,
       signature,
