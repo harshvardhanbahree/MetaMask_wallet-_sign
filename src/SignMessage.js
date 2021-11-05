@@ -13,9 +13,10 @@ const signMessage = async ({ setError, message }) => {
     await window.ethereum.send("eth_requestAccounts");
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-    var hash = Web3.utils.sha3(message);
+    const web3 = new Web3(window.ethereum);
+
     const address = await signer.getAddress();
-    const signature = await Web3.eth.personal.sign(hash, address, "Harsh@1997");
+    const signature = await web3.eth.personal.sign(message, address);
     return {
       message,
       signature,
